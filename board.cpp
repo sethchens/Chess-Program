@@ -35,10 +35,19 @@ using namespace std;
  ***********************************************/
 void Board::reset(bool fFree)
 {
-   // free everything
+   free();
    for (int r = 0; r < 8; r++)
-      for (int c = 0; c < 8; c++)
-         board[c][r] = nullptr;
+   {
+       for (int c = 0; c < 8; c++)
+       {
+           board[c][r] = new Space(c, r);
+       }
+   }
+
+   board[1][0] = new Knight(1, 0, true);  // White Knight
+   board[6][0] = new Knight(6, 0, true);  // White Knight
+   board[1][7] = new Knight(1, 7, false); // Black Knight
+   board[6][7] = new Knight(6, 7, false); // Black Knight
 }
 
 /***********************************************
@@ -62,7 +71,16 @@ Piece& Board::operator [] (const Position& pos)
  ***********************************************/
 void Board::display(const Position & posHover, const Position & posSelect) const
 {
-   
+   pgout->drawHover(posHover);
+   pgout->drawSelected(posSelect);
+   pgout->drawBoard();
+   for (int r = 0; r < 8; r++)
+   {
+       for (int c = 0; c < 8; c++)
+       {
+          board[c][r]->display(pgout);
+       }
+   }
 }
 
 
@@ -72,11 +90,8 @@ void Board::display(const Position & posHover, const Position & posSelect) const
  ************************************************/
 Board::Board(ogstream* pgout, bool noreset) : pgout(pgout), numMoves(0)
 {
-   for (int i = 0; i < 8; ++i) {
-       for (int j = 0; j < 8; ++j) {
-           board[i][j] = nullptr;
-       }
-   }
+   if (!noreset)
+      reset();
 }
 
 
@@ -86,7 +101,9 @@ Board::Board(ogstream* pgout, bool noreset) : pgout(pgout), numMoves(0)
  ************************************************/
 void Board::free()
 {
-
+   for (int r = 0; r < 8; r++)
+      for (int c = 0; c < 8; c++)
+         board[c][r] = nullptr;
 }
 
 
