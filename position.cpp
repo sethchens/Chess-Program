@@ -53,19 +53,19 @@ Position::Position(int c, int r) : colRow(0xff)
 
 int Position::getCol() const
 {
-    return isValid() ? (int)((colRow & 0x70) >> 4) : -1;
+    return isValid() ? (int)((colRow & 0xf0) >> 4) : -1;
 }
 
 int Position::getRow() const
 {
-    return isValid() ? (int)(colRow & 0x07) : -1;
+    return isValid() ? (int)(colRow & 0x0f) : -1;
 }
 
 void Position::setRow(int r)
 {
     if (r >= 0 && r < 8)
     {
-        colRow = (colRow & 0xf8) | (r & 0x07);
+        colRow = (colRow & 0xf0) | (r & 0x0f);
     }
     else
     {
@@ -77,7 +77,7 @@ void Position::setCol(int c)
 {
     if (c >= 0 && c < 8)
     {
-        colRow = (colRow & 0x8f) | ((c & 0x07) << 4);
+        colRow = (colRow & 0x0f) | ((c & 0x0f) << 4);
     }
     else
     {
@@ -89,7 +89,7 @@ void Position::set(int c, int r)
 {
     if (c >= 0 && c < 8 && r >= 0 && r < 8)
     {
-        colRow = ((c & 0x07) << 4) | (r & 0x07);
+        colRow = ((c & 0x0f) << 4) | (r & 0x0f);
     }
     else
     {
@@ -100,7 +100,7 @@ void Position::set(int c, int r)
 void Position::setXY(double x, double y)
 {
     int col = (int)((x - OFFSET_BOARD) / squareWidth);
-    int row = (int)((y - OFFSET_BOARD) / squareHeight);
+    int row = 7 - (int)((y - OFFSET_BOARD) / squareHeight);
     set(col, row);
 }
 
