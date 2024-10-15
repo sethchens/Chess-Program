@@ -2,7 +2,7 @@
  * Header File:
  *    TEST BISHOP
  * Author:
- *    <your name here>
+ *    Chris Mijangos and Seth Chen 
  * Summary:
  *    The unit tests for the bishop
  ************************************************************************/
