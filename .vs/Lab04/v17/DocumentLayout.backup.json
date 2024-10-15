@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\u650323084\\Desktop\\Week5\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|C:\\Users\\u650323084\\Desktop\\Week5\\testRook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|solutionrelative:testRook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|C:\\Users\\u650323084\\Desktop\\Week5\\testBishop.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|solutionrelative:testBishop.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|C:\\Users\\u650323084\\Desktop\\Week5\\pieceBishop.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|solutionrelative:pieceBishop.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|C:\\Users\\u650323084\\Desktop\\Week5\\pieceBishop.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|solutionrelative:pieceBishop.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|C:\\Users\\u650323084\\Desktop\\Week5\\piece.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|solutionrelative:piece.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|C:\\Users\\u650323084\\Desktop\\Week5\\testBishop.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|solutionrelative:testBishop.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|C:\\Users\\u650323084\\Desktop\\Week5\\test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|solutionrelative:test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|C:\\Users\\u650323084\\Desktop\\Week5\\testRook.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9E47F2C-242D-4AB1-90EC-058438EF136E}|Lab04.vcxproj|solutionrelative:testRook.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,80 +30,54 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "piece.h",
-              "DocumentMoniker": "C:\\Users\\u650323084\\Desktop\\Week5\\piece.h",
-              "RelativeDocumentMoniker": "piece.h",
-              "ToolTip": "C:\\Users\\u650323084\\Desktop\\Week5\\piece.h",
-              "RelativeToolTip": "piece.h",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFYAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-15T21:22:52.348Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "pieceBishop.cpp",
-              "DocumentMoniker": "C:\\Users\\u650323084\\Desktop\\Week5\\pieceBishop.cpp",
-              "RelativeDocumentMoniker": "pieceBishop.cpp",
-              "ToolTip": "C:\\Users\\u650323084\\Desktop\\Week5\\pieceBishop.cpp",
-              "RelativeToolTip": "pieceBishop.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-15T21:16:42.075Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "pieceBishop.h",
-              "DocumentMoniker": "C:\\Users\\u650323084\\Desktop\\Week5\\pieceBishop.h",
-              "RelativeDocumentMoniker": "pieceBishop.h",
-              "ToolTip": "C:\\Users\\u650323084\\Desktop\\Week5\\pieceBishop.h",
-              "RelativeToolTip": "pieceBishop.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-15T21:16:05.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "testBishop.cpp",
-              "DocumentMoniker": "C:\\Users\\u650323084\\Desktop\\Week5\\testBishop.cpp",
-              "RelativeDocumentMoniker": "testBishop.cpp",
-              "ToolTip": "C:\\Users\\u650323084\\Desktop\\Week5\\testBishop.cpp*",
-              "RelativeToolTip": "testBishop.cpp*",
-              "ViewState": "AgIAAJ0AAAAAAAAAAAAuwLQAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-15T21:08:25.037Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "testBishop.h",
               "DocumentMoniker": "C:\\Users\\u650323084\\Desktop\\Week5\\testBishop.h",
               "RelativeDocumentMoniker": "testBishop.h",
               "ToolTip": "C:\\Users\\u650323084\\Desktop\\Week5\\testBishop.h",
               "RelativeToolTip": "testBishop.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-15T21:07:09.492Z",
+              "WhenOpened": "2024-10-15T23:11:42.435Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "test.cpp",
-              "DocumentMoniker": "C:\\Users\\u650323084\\Desktop\\Week5\\test.cpp",
-              "RelativeDocumentMoniker": "test.cpp",
-              "ToolTip": "C:\\Users\\u650323084\\Desktop\\Week5\\test.cpp",
-              "RelativeToolTip": "test.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "testBishop.cpp",
+              "DocumentMoniker": "C:\\Users\\u650323084\\Desktop\\Week5\\testBishop.cpp",
+              "RelativeDocumentMoniker": "testBishop.cpp",
+              "ToolTip": "C:\\Users\\u650323084\\Desktop\\Week5\\testBishop.cpp",
+              "RelativeToolTip": "testBishop.cpp",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAC8AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-15T21:06:13.467Z",
+              "WhenOpened": "2024-10-15T23:08:59.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "testRook.h",
+              "DocumentMoniker": "C:\\Users\\u650323084\\Desktop\\Week5\\testRook.h",
+              "RelativeDocumentMoniker": "testRook.h",
+              "ToolTip": "C:\\Users\\u650323084\\Desktop\\Week5\\testRook.h",
+              "RelativeToolTip": "testRook.h",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABMAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-10-15T22:54:34.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "testRook.cpp",
+              "DocumentMoniker": "C:\\Users\\u650323084\\Desktop\\Week5\\testRook.cpp",
+              "RelativeDocumentMoniker": "testRook.cpp",
+              "ToolTip": "C:\\Users\\u650323084\\Desktop\\Week5\\testRook.cpp",
+              "RelativeToolTip": "testRook.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-15T22:54:37.027Z",
               "EditorCaption": ""
             }
           ]
