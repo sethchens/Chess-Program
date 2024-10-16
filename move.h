@@ -58,6 +58,7 @@ public:
    bool operator==(const Move& rhs) const;
    void constructPos(string move);
    int readAndAssign();
+   void setCapture(PieceType capturedPiece) { capture = capturedPiece; }
 
 
 protected:

@@ -24,7 +24,7 @@ void Knight::display(ogstream* pgout) const
 /**********************************************
  * KNIGHT : GET POSITIONS
  *********************************************/
-void Knight::getMoves(set <Move>& moves, const Board& board) const
+void Knight::getMoves(set<Move>& moves, const Board& board) const
 {
     const int knightMoves[8][2] = {
         {2, 1}, {2, -1}, {-2, 1}, {-2, -1},
@@ -39,11 +39,19 @@ void Knight::getMoves(set <Move>& moves, const Board& board) const
         if (newRow >= 0 && newRow < 8 && newCol >= 0 && newCol < 8)
         {
             Position pos(newCol, newRow);
-            // Check if the piece is either empty or of the opposite color
-            if (board[pos].getType() == SPACE || board[pos].isWhite() != this->fWhite)
+            Move newMove(this->position, pos);
+
+            if (board[pos].getType() == SPACE)
             {
-                Move move(this->position, pos);
-                moves.insert(move);
+                // Empty square, regular move
+                newMove.setCapture(SPACE);
+                moves.insert(newMove);
+            }
+            else if (board[pos].isWhite() != this->fWhite)
+            {
+                // Opposite color piece, capture move
+                newMove.setCapture(board[pos].getType());
+                moves.insert(newMove);
             }
         }
     }

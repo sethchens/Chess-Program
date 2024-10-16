@@ -7,7 +7,6 @@ Rook::Rook(int col, int row, bool isWhite) : Piece(col, row, isWhite) {}
 void Rook::getMoves(set<Move>& moves, const Board& board) const
 {
     const int directions[4][2] = { {0,1}, {0,-1}, {1,0}, {-1,0} };
-
     for (const auto& dir : directions)
     {
         for (int i = 1; i < 8; ++i)
@@ -20,16 +19,21 @@ void Rook::getMoves(set<Move>& moves, const Board& board) const
                 break;
 
             const Piece& pieceAtNewPos = board[newPos];
+            Move newMove(position, newPos);
 
             if (pieceAtNewPos.getType() == SPACE)
             {
-                moves.insert(Move(position, newPos));
+                newMove.setCapture(SPACE);
+                moves.insert(newMove);
             }
             else
             {
                 if (pieceAtNewPos.isWhite() != isWhite())
-                    moves.insert(Move(position, newPos));
-                break;
+                {
+                    newMove.setCapture(pieceAtNewPos.getType());
+                    moves.insert(newMove);
+                }
+                break;  // Stop in this direction after encountering any piece
             }
         }
     }
