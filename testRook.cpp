@@ -13,7 +13,6 @@
 #include "uiDraw.h"
 #include <cassert>      
 
-
  /*************************************
   * +---a-b-c-d-e-f-g-h---+
   * |                     |
@@ -30,31 +29,35 @@
   **************************************/
 void TestRook::getMoves_blocked()
 {
-    // Setup
+    // SETUP
     BoardEmpty board;
-    Rook* rook = new Rook(2, 1, true); // White rook at c2
-    board.board[2][1] = rook;
-    // Place blocking pieces
-    board.board[2][0] = new PieceSpy(2, 0, true, PAWN); //C1
-    board.board[1][1] = new PieceSpy(1, 1, true, PAWN); //B2
-    board.board[2][2] = new PieceSpy(2, 2, true, PAWN); //C3
-    board.board[3][1] = new PieceSpy(3, 1, true, PAWN); //D2
+    Rook rook(7, 7, false /*white*/);
+    rook.fWhite = true;
+    rook.position.set(2, 1);
+    board.board[2][1] = &rook;
+    White w1(PAWN);
+    board.board[2][0] = &w1; // C1
+    White w2(PAWN);
+    board.board[1][1] = &w2; // B2
+    White w3(PAWN);
+    board.board[2][2] = &w3; // C3
+    White w4(PAWN);
+    board.board[3][1] = &w4; // D2
+    set <Move> moves;
 
-    // Exercise
-    set<Move> moves;
-    rook->getMoves(moves, board);
+    // EXERCISE
+    rook.getMoves(moves, board);
 
-    // Verify
+    // VERIFY
     assertUnit(moves.empty());
 
-    // Teardown
-    delete rook;
-    delete board.board[2][0];
-    delete board.board[1][1];
-    delete board.board[2][2];
-    delete board.board[3][1];
+    // TEARDOWN
+    board.board[2][1] = nullptr; // white rook
+    board.board[2][0] = nullptr; // white pawn 1
+    board.board[1][1] = nullptr; // white pawn 2
+    board.board[2][2] = nullptr; // white pawn 3
+    board.board[3][1] = nullptr; // white pawn 4
 }
-
 
 /*************************************
  * +---a-b-c-d-e-f-g-h---+
@@ -72,26 +75,27 @@ void TestRook::getMoves_blocked()
  **************************************/
 void TestRook::getMoves_slideToEnd()
 {
-    // Setup
+    // SETUP
     BoardEmpty board;
-    Rook* rook = new Rook(2, 1, true); // White rook at c2
-    board.board[2][1] = rook;
+    Rook rook(7, 7, false /*white*/);
+    rook.fWhite = true;
+    rook.position.set(2, 1);
+    board.board[2][1] = &rook;
+    set <Move> moves;
 
-    // Exercise
-    set<Move> moves;
-    rook->getMoves(moves, board);
+    // EXERCISE
+    rook.getMoves(moves, board);
 
-    // Verify
+    // VERIFY
     assertUnit(moves.size() == 14);
     assertUnit(moves.find(Move("c2c8")) != moves.end());
     assertUnit(moves.find(Move("c2c1")) != moves.end());
     assertUnit(moves.find(Move("c2a2")) != moves.end());
     assertUnit(moves.find(Move("c2h2")) != moves.end());
 
-    // Teardown
-    delete rook;
+    // TEARDOWN
+    board.board[2][1] = nullptr; // white rook
 }
-
 
 /*************************************
  * +---a-b-c-d-e-f-g-h---+
@@ -109,21 +113,26 @@ void TestRook::getMoves_slideToEnd()
  **************************************/
 void TestRook::getMoves_slideToBlock()
 {
-    // Setup
+    // SETUP
     BoardEmpty board;
-    Rook* rook = new Rook(2, 1, true); // White rook at c2
-    board.board[2][1] = rook;
-    // Place blocking pieces
-    board.board[0][1] = new PieceSpy(1, 1, true, PAWN); //A2
-    board.board[2][0] = new PieceSpy(2, 0, true, PAWN); //C1
-    board.board[7][1] = new PieceSpy(7, 1, true, PAWN); //H2
-    board.board[2][7] = new PieceSpy(2, 7, true, PAWN); //C8
+    Rook rook(7, 7, false /*white*/);
+    rook.fWhite = true;
+    rook.position.set(2, 1);
+    board.board[2][1] = &rook;
+    White w1(PAWN);
+    board.board[0][1] = &w1; // A2
+    White w2(PAWN);
+    board.board[2][0] = &w2; // C1
+    White w3(PAWN);
+    board.board[7][1] = &w3; // H2
+    White w4(PAWN);
+    board.board[2][7] = &w4; // C8
+    set <Move> moves;
 
-    // Exercise
-    set<Move> moves;
-    rook->getMoves(moves, board);
+    // EXERCISE
+    rook.getMoves(moves, board);
 
-    // Verify
+    // VERIFY
     assertUnit(moves.size() == 10);
     assertUnit(moves.find(Move("c2b2")) != moves.end());
     assertUnit(moves.find(Move("c2d2")) != moves.end());
@@ -136,13 +145,12 @@ void TestRook::getMoves_slideToBlock()
     assertUnit(moves.find(Move("c2c6")) != moves.end());
     assertUnit(moves.find(Move("c2c7")) != moves.end());
 
-
-    // Teardown
-    delete rook;
-    delete board.board[0][1];
-    delete board.board[2][0];
-    delete board.board[7][1];
-    delete board.board[2][7];
+    // TEARDOWN
+    board.board[2][1] = nullptr; // white rook
+    board.board[0][1] = nullptr; // white pawn 1
+    board.board[2][0] = nullptr; // white pawn 2
+    board.board[7][1] = nullptr; // white pawn 3
+    board.board[2][7] = nullptr; // white pawn 4
 }
 
 /*************************************
@@ -161,21 +169,26 @@ void TestRook::getMoves_slideToBlock()
  **************************************/
 void TestRook::getMoves_slideToCapture()
 {
-    // Setup
+    // SETUP
     BoardEmpty board;
-    Rook* rook = new Rook(2, 1, true); // White rook at c2
-    board.board[2][1] = rook;
-    // Place blocking pieces
-    board.board[0][1] = new PieceSpy(1, 1, false, PAWN); //A2
-    board.board[2][0] = new PieceSpy(2, 0, false, PAWN); //C1
-    board.board[7][1] = new PieceSpy(7, 1, false, PAWN); //H2
-    board.board[2][7] = new PieceSpy(2, 7, false, PAWN); //C8
+    Rook rook(7, 7, false /*white*/);
+    rook.fWhite = true;
+    rook.position.set(2, 1);
+    board.board[2][1] = &rook;
+    Black b1(PAWN);
+    board.board[0][1] = &b1; // A2
+    Black b2(PAWN);
+    board.board[2][0] = &b2; // C1
+    Black b3(PAWN);
+    board.board[7][1] = &b3; // H2
+    Black b4(PAWN);
+    board.board[2][7] = &b4; // C8
+    set <Move> moves;
 
-    // Exercise
-    set<Move> moves;
-    rook->getMoves(moves, board);
+    // EXERCISE
+    rook.getMoves(moves, board);
 
-    // Verify
+    // VERIFY
     assertUnit(moves.size() == 14);
     assertUnit(moves.find(Move("c2b2")) != moves.end());
     assertUnit(moves.find(Move("c2a2p")) != moves.end());
@@ -192,15 +205,13 @@ void TestRook::getMoves_slideToCapture()
     assertUnit(moves.find(Move("c2c7")) != moves.end());
     assertUnit(moves.find(Move("c2c8p")) != moves.end());
 
-
-    // Teardown
-    delete rook;
-    delete board.board[0][1];
-    delete board.board[2][0];
-    delete board.board[7][1];
-    delete board.board[2][7];
+    // TEARDOWN
+    board.board[2][1] = nullptr; // white rook
+    board.board[0][1] = nullptr; // black pawn 1
+    board.board[2][0] = nullptr; // black pawn 2
+    board.board[7][1] = nullptr; // black pawn 3
+    board.board[2][7] = nullptr; // black pawn 4
 }
-
 
 /*************************************
  * GET TYPE : rook
@@ -209,12 +220,13 @@ void TestRook::getMoves_slideToCapture()
  **************************************/
 void TestRook::getType()
 {
-    // Setup
-    Rook rook(0, 0, true);
+    // SETUP
+    Rook rook(7, 7, false);
+    PieceType pt;
 
-    // Exercise
-    PieceType type = rook.getType();
+    // EXERCISE
+    pt = rook.getType();
 
-    // Verify
-    assertUnit(type == ROOK);
-}
+    // VERIFY
+    assertEquals(ROOK, pt);
+}  // TEARDOWN

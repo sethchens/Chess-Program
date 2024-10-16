@@ -78,6 +78,9 @@
     <ClCompile Include="pieceRook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pieceQueen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="move.h">
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pieceRook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pieceQueen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,15 +7,11 @@
  *    The unit tests for a bishop
  ************************************************************************/
 
-
 #include "testBishop.h"
 #include "pieceBishop.h"     
 #include "board.h"
 #include "uiDraw.h"
 #include <cassert>      
-
-
-
 
  /*************************************
   * +---a-b-c-d-e-f-g-h---+
@@ -33,29 +29,34 @@
   **************************************/
 void TestBishop::getMoves_blocked()
 {
-    // Setup
+    // SETUP
     BoardEmpty board;
-    Bishop* bishop = new Bishop(2, 1, true); // White bishop at c2
-    board.board[2][1] = bishop;
-    // Place blocking pieces
-    board.board[1][0] = new PieceSpy(1, 0, true, PAWN); // Pawn at b1
-    board.board[1][2] = new PieceSpy(1, 2, true, PAWN); // Pawn at b3
-    board.board[3][0] = new PieceSpy(3, 0, true, PAWN); // Pawn at d1
-    board.board[3][2] = new PieceSpy(3, 2, true, PAWN); // Pawn at d3
+    Bishop bishop(7, 7, false /*white*/);
+    bishop.fWhite = true;
+    bishop.position.set(2, 1);
+    board.board[2][1] = &bishop;
+    White w1(PAWN);
+    board.board[1][0] = &w1;
+    White w2(PAWN);
+    board.board[1][2] = &w2;
+    White w3(PAWN);
+    board.board[3][0] = &w3;
+    White w4(PAWN);
+    board.board[3][2] = &w4;
+    set <Move> moves;
 
-    // Exercise
-    set<Move> moves;
-    bishop->getMoves(moves, board);
+    // EXERCISE
+    bishop.getMoves(moves, board);
 
-    // Verify
+    // VERIFY
     assertUnit(moves.empty());
 
-    // Teardown
-    delete bishop;
-    delete board.board[1][0]; // b1
-    delete board.board[1][2]; // b3
-    delete board.board[3][0]; // d1
-    delete board.board[3][2]; // d3
+    // TEARDOWN
+    board.board[2][1] = nullptr; // white bishop
+    board.board[1][0] = nullptr; // white pawn 1
+    board.board[1][2] = nullptr; // white pawn 2
+    board.board[3][0] = nullptr; // white pawn 3
+    board.board[3][2] = nullptr; // white pawn 4
 }
 
 /*************************************
@@ -74,17 +75,19 @@ void TestBishop::getMoves_blocked()
  **************************************/
 void TestBishop::getMoves_slideToEnd()
 {
-    // Setup
+    // SETUP
     BoardEmpty board;
-    Bishop* bishop = new Bishop(2, 1, true); // White bishop at c2
-    board.board[2][1] = bishop;
+    Bishop bishop(7, 7, false /*white*/);
+    bishop.fWhite = true;
+    bishop.position.set(2, 1);
+    board.board[2][1] = &bishop;
+    set <Move> moves;
 
-    // Exercise
-    set<Move> moves;
-    bishop->getMoves(moves, board);
+    // EXERCISE
+    bishop.getMoves(moves, board);
 
-    // Verify
-    assertUnit(moves.size() == 9);  // Bishop can move to 11 squares from c2
+    // VERIFY
+    assertUnit(moves.size() == 9);  // Bishop can move to 9 squares from c2
     assertUnit(moves.find(Move("c2b1")) != moves.end());
     assertUnit(moves.find(Move("c2b3")) != moves.end());
     assertUnit(moves.find(Move("c2a4")) != moves.end());
@@ -95,10 +98,9 @@ void TestBishop::getMoves_slideToEnd()
     assertUnit(moves.find(Move("c2g6")) != moves.end());
     assertUnit(moves.find(Move("c2h7")) != moves.end());
 
-    // Teardown
-    delete bishop;
+    // TEARDOWN
+    board.board[2][1] = nullptr; // white bishop
 }
-
 
 /*************************************
  * +---a-b-c-d-e-f-g-h---+
@@ -116,21 +118,26 @@ void TestBishop::getMoves_slideToEnd()
  **************************************/
 void TestBishop::getMoves_slideToBlock()
 {
-    // Setup
+    // SETUP
     BoardEmpty board;
-    Bishop* bishop = new Bishop(2, 1, true); // White bishop at c2
-    board.board[2][1] = bishop;
-    // Place blocking pieces
-    board.board[7][6] = new PieceSpy(7, 6, true, PAWN);  // Pawn at h7
-    board.board[0][3] = new PieceSpy(0, 3, true, PAWN);  // Pawn at a4
-    board.board[1][0] = new PieceSpy(1, 0, true, PAWN);  // Pawn at b1
-    board.board[3][0] = new PieceSpy(3, 0, true, PAWN);  // Pawn at d1
+    Bishop bishop(7, 7, false /*white*/);
+    bishop.fWhite = true;
+    bishop.position.set(2, 1);
+    board.board[2][1] = &bishop;
+    White w1(PAWN);
+    board.board[7][6] = &w1;
+    White w2(PAWN);
+    board.board[0][3] = &w2;
+    White w3(PAWN);
+    board.board[1][0] = &w3;
+    White w4(PAWN);
+    board.board[3][0] = &w4;
+    set <Move> moves;
 
-    // Exercise
-    set<Move> moves;
-    bishop->getMoves(moves, board);
+    // EXERCISE
+    bishop.getMoves(moves, board);
 
-    // Verify
+    // VERIFY
     assertUnit(moves.size() == 5);
     assertUnit(moves.find(Move("c2b3")) != moves.end());
     assertUnit(moves.find(Move("c2d3")) != moves.end());
@@ -138,14 +145,13 @@ void TestBishop::getMoves_slideToBlock()
     assertUnit(moves.find(Move("c2f5")) != moves.end());
     assertUnit(moves.find(Move("c2g6")) != moves.end());
 
-    // Teardown
-    delete bishop;
-    delete board.board[7][6];
-    delete board.board[0][3];
-    delete board.board[1][0];
-    delete board.board[3][0];
+    // TEARDOWN
+    board.board[2][1] = nullptr; // white bishop
+    board.board[7][6] = nullptr; // white pawn 1
+    board.board[0][3] = nullptr; // white pawn 2
+    board.board[1][0] = nullptr; // white pawn 3
+    board.board[3][0] = nullptr; // white pawn 4
 }
-
 
 /*************************************
  * +---a-b-c-d-e-f-g-h---+
@@ -163,21 +169,26 @@ void TestBishop::getMoves_slideToBlock()
  **************************************/
 void TestBishop::getMoves_slideToCapture()
 {
-    // Setup
+    // SETUP
     BoardEmpty board;
-    Bishop* bishop = new Bishop(2, 1, true); // White bishop at c2
-    board.board[2][1] = bishop;
-    // Place blocking pieces
-    board.board[0][3] = new PieceSpy(0, 3, false, PAWN); // Black pawn at a4
-    board.board[7][6] = new PieceSpy(7, 6, false, PAWN); // Black pawn at h7
-    board.board[1][0] = new PieceSpy(1, 0, false, PAWN); // Black pawn at b1
-    board.board[3][0] = new PieceSpy(3, 0, false, PAWN); // Black pawn at d1
+    Bishop bishop(7, 7, false /*white*/);
+    bishop.fWhite = true;
+    bishop.position.set(2, 1);
+    board.board[2][1] = &bishop;
+    Black b1(PAWN);
+    board.board[0][3] = &b1;
+    Black b2(PAWN);
+    board.board[7][6] = &b2;
+    Black b3(PAWN);
+    board.board[1][0] = &b3;
+    Black b4(PAWN);
+    board.board[3][0] = &b4;
+    set <Move> moves;
 
-    // Exercise
-    set<Move> moves;
-    bishop->getMoves(moves, board);
+    // EXERCISE
+    bishop.getMoves(moves, board);
 
-    // Verify
+    // VERIFY
     assertUnit(moves.size() == 9);
     assertUnit(moves.find(Move("c2b1p")) != moves.end());
     assertUnit(moves.find(Move("c2d1p")) != moves.end());
@@ -189,14 +200,13 @@ void TestBishop::getMoves_slideToCapture()
     assertUnit(moves.find(Move("c2g6")) != moves.end());
     assertUnit(moves.find(Move("c2b3")) != moves.end());
 
-    // Teardown
-    delete bishop;
-    delete board.board[0][3]; // a4
-    delete board.board[7][6]; // h7
-    delete board.board[1][0]; // b1
-    delete board.board[3][0]; // d1
+    // TEARDOWN
+    board.board[2][1] = nullptr; // white bishop
+    board.board[0][3] = nullptr; // black pawn 1
+    board.board[7][6] = nullptr; // black pawn 2
+    board.board[1][0] = nullptr; // black pawn 3
+    board.board[3][0] = nullptr; // black pawn 4
 }
-
 
 /*************************************
  * GET TYPE : bishop
@@ -205,13 +215,14 @@ void TestBishop::getMoves_slideToCapture()
  **************************************/
 void TestBishop::getType()
 {
-    // Setup
-    Bishop bishop(0, 0, true);
+    // SETUP
+    Bishop bishop(7, 7, false);
+    PieceType pt;
 
-    // Exercise
-    PieceType type = bishop.getType();
+    // EXERCISE
+    pt = bishop.getType();
 
-    // Verify
-    assertUnit(type == BISHOP);
-}
+    // VERIFY
+    assertEquals(BISHOP, pt);
+}  // TEARDOWN
 
