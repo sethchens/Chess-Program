@@ -31,6 +31,7 @@ public:
         getMoves_whiteCastle();
         getMoves_blackCastle();
         getMoves_whiteCastleKingMoved();
+        getMoves_blackCastleKingMoved();// Added
         getMoves_whiteCastleRookMoved();
 
         getType();
@@ -45,6 +46,7 @@ private:
     void getMoves_whiteCastle();
     void getMoves_blackCastle();
     void getMoves_whiteCastleKingMoved();
+    void getMoves_blackCastleKingMoved();// Added
     void getMoves_whiteCastleRookMoved();
     void getType();
 };

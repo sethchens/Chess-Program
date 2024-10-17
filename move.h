@@ -49,6 +49,7 @@ public:
    // setters
    void setMoveType(string move);
    void setCapturedPieceType(string move);
+   void setPromotionPiece(PieceType piece) { promote = piece; } //Added for promotion 10/16/2024
    
    const bool isPromotion();
    bool isEnPassant(string move);
