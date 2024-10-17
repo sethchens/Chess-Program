@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5DFAFBEA2CC1AF190095CDD8 /* pieceQueen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBDD2CC1AF190095CDD8 /* pieceQueen.cpp */; };
+		5DFAFBEB2CC1AF190095CDD8 /* testBishop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBE12CC1AF190095CDD8 /* testBishop.cpp */; };
+		5DFAFBEC2CC1AF190095CDD8 /* piecePawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBDB2CC1AF190095CDD8 /* piecePawn.cpp */; };
+		5DFAFBED2CC1AF190095CDD8 /* testKing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBE32CC1AF190095CDD8 /* testKing.cpp */; };
+		5DFAFBEE2CC1AF190095CDD8 /* pieceBishop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBD72CC1AF190095CDD8 /* pieceBishop.cpp */; };
+		5DFAFBEF2CC1AF190095CDD8 /* testRook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBE92CC1AF190095CDD8 /* testRook.cpp */; };
+		5DFAFBF02CC1AF190095CDD8 /* pieceKing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBD92CC1AF190095CDD8 /* pieceKing.cpp */; };
+		5DFAFBF12CC1AF190095CDD8 /* testPawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBE52CC1AF190095CDD8 /* testPawn.cpp */; };
+		5DFAFBF22CC1AF190095CDD8 /* testQueen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBE72CC1AF190095CDD8 /* testQueen.cpp */; };
+		5DFAFBF32CC1AF190095CDD8 /* pieceRook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFAFBDF2CC1AF190095CDD8 /* pieceRook.cpp */; };
 		C1EE0D9C2B28F3C600E5D6E1 /* chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1EE0D7D2B28F3C500E5D6E1 /* chess.cpp */; };
 		C1EE0D9D2B28F3C600E5D6E1 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1EE0D7E2B28F3C500E5D6E1 /* test.cpp */; };
 		C1EE0D9E2B28F3C600E5D6E1 /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1EE0D7F2B28F3C500E5D6E1 /* board.cpp */; };
@@ -39,6 +49,26 @@
 
 /* Begin PBXFileReference section */
 		5DE5B1452CB7250F00F8089C /* move.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = move.txt; sourceTree = "<group>"; };
+		5DFAFBD62CC1AF190095CDD8 /* pieceBishop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pieceBishop.h; sourceTree = "<group>"; };
+		5DFAFBD72CC1AF190095CDD8 /* pieceBishop.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pieceBishop.cpp; sourceTree = "<group>"; };
+		5DFAFBD82CC1AF190095CDD8 /* pieceKing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pieceKing.h; sourceTree = "<group>"; };
+		5DFAFBD92CC1AF190095CDD8 /* pieceKing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pieceKing.cpp; sourceTree = "<group>"; };
+		5DFAFBDA2CC1AF190095CDD8 /* piecePawn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = piecePawn.h; sourceTree = "<group>"; };
+		5DFAFBDB2CC1AF190095CDD8 /* piecePawn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = piecePawn.cpp; sourceTree = "<group>"; };
+		5DFAFBDC2CC1AF190095CDD8 /* pieceQueen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pieceQueen.h; sourceTree = "<group>"; };
+		5DFAFBDD2CC1AF190095CDD8 /* pieceQueen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pieceQueen.cpp; sourceTree = "<group>"; };
+		5DFAFBDE2CC1AF190095CDD8 /* pieceRook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pieceRook.h; sourceTree = "<group>"; };
+		5DFAFBDF2CC1AF190095CDD8 /* pieceRook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pieceRook.cpp; sourceTree = "<group>"; };
+		5DFAFBE02CC1AF190095CDD8 /* testBishop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testBishop.h; sourceTree = "<group>"; };
+		5DFAFBE12CC1AF190095CDD8 /* testBishop.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testBishop.cpp; sourceTree = "<group>"; };
+		5DFAFBE22CC1AF190095CDD8 /* testKing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testKing.h; sourceTree = "<group>"; };
+		5DFAFBE32CC1AF190095CDD8 /* testKing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testKing.cpp; sourceTree = "<group>"; };
+		5DFAFBE42CC1AF190095CDD8 /* testPawn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testPawn.h; sourceTree = "<group>"; };
+		5DFAFBE52CC1AF190095CDD8 /* testPawn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testPawn.cpp; sourceTree = "<group>"; };
+		5DFAFBE62CC1AF190095CDD8 /* testQueen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testQueen.h; sourceTree = "<group>"; };
+		5DFAFBE72CC1AF190095CDD8 /* testQueen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testQueen.cpp; sourceTree = "<group>"; };
+		5DFAFBE82CC1AF190095CDD8 /* testRook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testRook.h; sourceTree = "<group>"; };
+		5DFAFBE92CC1AF190095CDD8 /* testRook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testRook.cpp; sourceTree = "<group>"; };
 		C1EE0D732B28F39600E5D6E1 /* Lab04 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab04; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1EE0D7D2B28F3C500E5D6E1 /* chess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chess.cpp; sourceTree = "<group>"; };
 		C1EE0D7E2B28F3C500E5D6E1 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
@@ -91,6 +121,26 @@
 		C1EE0D6A2B28F39600E5D6E1 = {
 			isa = PBXGroup;
 			children = (
+				5DFAFBD62CC1AF190095CDD8 /* pieceBishop.h */,
+				5DFAFBD72CC1AF190095CDD8 /* pieceBishop.cpp */,
+				5DFAFBD82CC1AF190095CDD8 /* pieceKing.h */,
+				5DFAFBD92CC1AF190095CDD8 /* pieceKing.cpp */,
+				5DFAFBDA2CC1AF190095CDD8 /* piecePawn.h */,
+				5DFAFBDB2CC1AF190095CDD8 /* piecePawn.cpp */,
+				5DFAFBDC2CC1AF190095CDD8 /* pieceQueen.h */,
+				5DFAFBDD2CC1AF190095CDD8 /* pieceQueen.cpp */,
+				5DFAFBDE2CC1AF190095CDD8 /* pieceRook.h */,
+				5DFAFBDF2CC1AF190095CDD8 /* pieceRook.cpp */,
+				5DFAFBE02CC1AF190095CDD8 /* testBishop.h */,
+				5DFAFBE12CC1AF190095CDD8 /* testBishop.cpp */,
+				5DFAFBE22CC1AF190095CDD8 /* testKing.h */,
+				5DFAFBE32CC1AF190095CDD8 /* testKing.cpp */,
+				5DFAFBE42CC1AF190095CDD8 /* testPawn.h */,
+				5DFAFBE52CC1AF190095CDD8 /* testPawn.cpp */,
+				5DFAFBE62CC1AF190095CDD8 /* testQueen.h */,
+				5DFAFBE72CC1AF190095CDD8 /* testQueen.cpp */,
+				5DFAFBE82CC1AF190095CDD8 /* testRook.h */,
+				5DFAFBE92CC1AF190095CDD8 /* testRook.cpp */,
 				C1EE0D7F2B28F3C500E5D6E1 /* board.cpp */,
 				C1EE0D8C2B28F3C600E5D6E1 /* board.h */,
 				C1EE0D7D2B28F3C500E5D6E1 /* chess.cpp */,
@@ -215,6 +265,16 @@
 				C1EE0D9F2B28F3C600E5D6E1 /* uiInteract.cpp in Sources */,
 				C1EE0DA82B28F3C600E5D6E1 /* testPosition.cpp in Sources */,
 				C1EE0DA52B28F3C600E5D6E1 /* testBoard.cpp in Sources */,
+				5DFAFBEA2CC1AF190095CDD8 /* pieceQueen.cpp in Sources */,
+				5DFAFBEB2CC1AF190095CDD8 /* testBishop.cpp in Sources */,
+				5DFAFBEC2CC1AF190095CDD8 /* piecePawn.cpp in Sources */,
+				5DFAFBED2CC1AF190095CDD8 /* testKing.cpp in Sources */,
+				5DFAFBEE2CC1AF190095CDD8 /* pieceBishop.cpp in Sources */,
+				5DFAFBEF2CC1AF190095CDD8 /* testRook.cpp in Sources */,
+				5DFAFBF02CC1AF190095CDD8 /* pieceKing.cpp in Sources */,
+				5DFAFBF12CC1AF190095CDD8 /* testPawn.cpp in Sources */,
+				5DFAFBF22CC1AF190095CDD8 /* testQueen.cpp in Sources */,
+				5DFAFBF32CC1AF190095CDD8 /* pieceRook.cpp in Sources */,
 				C1EE0DA02B28F3C600E5D6E1 /* position.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
