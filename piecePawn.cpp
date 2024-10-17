@@ -25,14 +25,6 @@ void Pawn::getMoves(set<Move>& moves, const Board& board) const
         }
     }
 
-    //if (canEnPassant(captureLeft, board))
-    //    std::cout << "En Passant available on e3\n";
-    //if (canEnPassant(captureRight, board))
-    //    std::cout << "En Passant available on g3\n";
-
-    //std::cout << "Capture Left Position: " << captureLeft.getRow() << ", " << captureLeft.getCol() << std::endl;
-    //std::cout << "Capture Right Position: " << captureRight.getRow() << ", " << captureRight.getCol() << std::endl;
-
     // Capture moves
     addCaptureMove(moves, captureLeft, board);
     addCaptureMove(moves, captureRight, board);
@@ -86,12 +78,30 @@ void Pawn::addPromotionMoves(set<Move>& moves, const Position& newPos, PieceType
 bool Pawn::canEnPassant(const Position& capturePos, const Board& board) const
 {
     int enPassantRow = isWhite() ? 4 : 3;
-    if (position.getRow() != enPassantRow) return false;
 
-    const Piece& adjacentPiece = board[Position(capturePos.getCol(), position.getRow())];
-    return adjacentPiece.getType() == PAWN &&
+    // Check if the pawn is on the en passant row
+    if (position.getRow() != enPassantRow) {
+        return false;
+    }
+
+    // Get the adjacent piece's position (adjacent pawn should be on the previous row)
+    int adjacentCol = position.getCol() + (capturePos.getCol() > position.getCol() ? 1 : -1);
+    Position adjacentPos(adjacentCol, position.getRow());  // Correct the adjacent position
+
+    const Piece& adjacentPiece = board[adjacentPos];
+
+    // Check if the adjacent piece is a pawn of the opposite color and just moved
+    if (adjacentPiece.getType() == PAWN &&
         adjacentPiece.isWhite() != isWhite() &&
-        adjacentPiece.justMoved(board.getCurrentMove());
+        adjacentPiece.justMoved(board.getCurrentMove()) &&
+        abs(position.getCol() - capturePos.getCol()) == 1) 
+    
+    {
+        return true;
+    }
+
+
+    return false;
 }
 
 void Pawn::display(ogstream* pgout) const

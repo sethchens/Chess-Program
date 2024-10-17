@@ -11,7 +11,8 @@
 #include "piecePawn.h"     
 #include "board.h"
 #include "uiDraw.h"
-#include <cassert>      
+#include <cassert>  
+#include "pieceRook.h"
 
 
 
@@ -318,13 +319,13 @@ void TestPawn::getMoves_enpassantWhite()
     board.board[2][4] = &blackPawn2;
 
     Pawn blackPawn3(1, 5, false); // Black pawn at b6
+    blackPawn3.setLastMove(1);
     board.board[1][5] = &blackPawn3;
 
     set<Move> moves;
 
     // EXERCISE
     whitePawn.getMoves(moves, board);
-
 
     // VERIFY
     // White pawn should have 2 moves: en passant to a6 and en passant to c6
@@ -369,26 +370,20 @@ void TestPawn::getMoves_enpassantBlack()
     Pawn blackPawn(5, 3, false); // Black pawn at f4
     board.board[5][3] = &blackPawn;
 
-    Pawn whitePawn1(7, 3, true); // White pawn at h4
-    board.board[7][3] = &whitePawn1;
+    Pawn whitePawn1(6, 3, true); // White pawn at g4
+    board.board[6][3] = &whitePawn1;
 
     Pawn whitePawn2(4, 3, true); // White pawn at e4
     board.board[4][3] = &whitePawn2;
 
     Pawn whitePawn3(5, 2, true); // White pawn at f3
     board.board[5][2] = &whitePawn3;
+    whitePawn3.setLastMove(1);
 
     set<Move> moves;
 
     // EXERCISE
     blackPawn.getMoves(moves, board);
-
-    // PRINT MOVES (for debugging)
-    std::cout << "Moves for Black Pawn (En Passant Test):" << std::endl;
-    for (const auto& move : moves)
-    {
-        std::cout << const_cast<Move&>(move).getText() << std::endl;
-    }
 
     // VERIFY
     // Black pawn should have 2 moves: en passant to e3 and en passant to g3
@@ -400,7 +395,7 @@ void TestPawn::getMoves_enpassantBlack()
 
     // TEARDOWN
     board.board[5][3] = nullptr;
-    board.board[7][3] = nullptr;
+    board.board[6][3] = nullptr;
     board.board[4][3] = nullptr;
     board.board[5][2] = nullptr;
 }
@@ -424,7 +419,44 @@ void TestPawn::getMoves_enpassantBlack()
  **************************************/
 void TestPawn::getMoves_promotionWhite()
 {
-	assertUnit(NOT_YET_IMPLEMENTED);
+    // SETUP
+    BoardEmpty board;
+    board.moveNumber = 1; // Set the current move number
+
+    Pawn whitePawn(1, 6, true); // White pawn at b7
+    board.board[1][6] = &whitePawn;
+
+    Black blackPawn1(PAWN);
+    board.board[0][7] = &blackPawn1; // Black pawn at a8
+
+    Black blackPawn2(PAWN);
+    board.board[2][7] = &blackPawn2; // Black pawn at c8
+
+    set<Move> moves;
+
+    // EXERCISE
+    whitePawn.getMoves(moves, board);
+
+    // PRINT MOVES (for debugging)
+    //std::cout << "Moves for White Pawn (Promotion Test):" << std::endl;
+    //for (const auto& move : moves)
+    //{
+    //    std::cout << const_cast<Move&>(move).getText() << std::endl;
+    //}
+
+    // VERIFY
+    // White pawn should have 3 moves unless it is 12 if we are counting promotion
+    assertUnit(moves.size() == 3);
+
+    // Check for promotion to Queen
+    assertUnit(moves.find(Move("b7a8p")) != moves.end());  
+    assertUnit(moves.find(Move("b7b8C")) != moves.end());  
+    assertUnit(moves.find(Move("b7c8p")) != moves.end());  
+
+    // TEARDOWN
+    board.board[1][6] = nullptr; // White pawn
+    board.board[0][7] = nullptr; // Black pawn 1
+    board.board[2][7] = nullptr; // Black pawn 2
 }
 
 
@@ -447,7 +479,46 @@ void TestPawn::getMoves_promotionWhite()
  **************************************/
 void TestPawn::getMoves_promotionBlack()
 {
-	assertUnit(NOT_YET_IMPLEMENTED);
+    // SETUP
+    BoardEmpty board;
+    board.moveNumber = 1; // Set the current move number
+
+    // Black pawn at e2
+    Pawn blackPawn(4, 1, false); // Black pawn at e2
+    board.board[4][1] = &blackPawn;
+
+    // White rooks at f1 and d1
+    Rook whiteRook1(5, 0, true); // White rook at f1
+    board.board[5][0] = &whiteRook1;
+
+    Rook whiteRook2(3, 0, true); // White rook at d1
+    board.board[3][0] = &whiteRook2;
+
+    set<Move> moves;
+
+    // EXERCISE
+    blackPawn.getMoves(moves, board);
+
+    // PRINT MOVES (for debugging)
+    //std::cout << "Moves for Black Pawn (Rook Capture Test):" << std::endl;
+    //for (const auto& move : moves)
+    //{
+    //    std::cout << const_cast<Move&>(move).getText() << std::endl;
+    //}
+
+    // VERIFY
+    // Black pawn should have 3 moves: capture f1, move to e1, and capture d1
+    assertUnit(moves.size() == 3);
+
+    // Possible moves
+    assertUnit(moves.find(Move("e2f1r")) != moves.end()); // Capture rook on f1
+    assertUnit(moves.find(Move("e2e1C")) != moves.end()); // Move to e1
+    assertUnit(moves.find(Move("e2d1r")) != moves.end()); // Capture rook on d1
+
+    // TEARDOWN
+    board.board[4][1] = nullptr;
+    board.board[5][0] = nullptr;
+    board.board[3][0] = nullptr;
 }
 
 
@@ -458,6 +529,14 @@ void TestPawn::getMoves_promotionBlack()
  **************************************/
 void TestPawn::getType()
 {
-	assertUnit(NOT_YET_IMPLEMENTED);
+    // SETUP
+    Pawn pawn(4, 1, true); // White Pawn at e2
+    PieceType pt;
+
+    // EXERCISE
+    pt = pawn.getType();
+
+    // VERIFY
+    assertEquals(PAWN, pt);
 }
 
