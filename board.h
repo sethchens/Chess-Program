@@ -13,6 +13,7 @@
 #include <cassert>
 #include "move.h"   // Because we return a set of Move
 #include "piece.h"  // Because BoardEmpty need to know the fill definition
+#include "pieceQueen.h"
 
 class ogstream;
 class TestPawn;
@@ -56,7 +57,7 @@ public:
    // setters
    virtual void free();
    virtual void reset(bool fFree = true);
-   virtual void move(const Move & move);
+   virtual void move(Move & move);
    virtual Piece& operator [] (const Position& pos);
 
 protected:

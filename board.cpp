@@ -124,20 +124,42 @@ void Board::assertBoard()
  *         Execute a move according to the contained instructions
  *   INPUT move The instructions of the move
  *********************************************/
-void Board::move(const Move & move)
+void Board::move(Move & move)
 {
    // If the piece currently at dest is not a space, that means it's a capture.
    if (board[move.getTo().getCol()][move.getTo().getRow()]->getType() != SPACE)
    {
-      board[move.getTo().getCol()][move.getTo().getRow()] = new Space(move.getFrom().getCol(), move.getFrom().getRow()); // The sapce should not be gone until the end
+      // The only exception is that if the source is a king, the move is actually a castling
+      if (board[move.getFrom().getCol()][move.getFrom().getRow()]->getType() != KING)
+      {
+            board[move.getTo().getCol()][move.getTo().getRow()] = new Space(move.getFrom().getCol(), move.getFrom().getRow());
+      }
+      else
+      {
+         if (board[move.getFrom().getCol()][move.getFrom().getRow()]->isWhite() != board[move.getTo().getCol()][move.getTo().getRow()]->isWhite())
+            board[move.getTo().getCol()][move.getTo().getRow()] = new Space(move.getFrom().getCol(), move.getFrom().getRow());
+      }
    }
    
    // Swapping two pointers
    Piece * pToSwap = board[move.getTo().getCol()][move.getTo().getRow()];
-   board[move.getTo().getCol()][move.getTo().getRow()] = board[move.getFrom().getCol()][move.getFrom().getRow()];  // First place the piece at source to dest
-   board[move.getFrom().getCol()][move.getFrom().getRow()] = pToSwap;
+   board[move.getTo().getCol()][move.getTo().getRow()] = board[move.getFrom().getCol()][move.getFrom().getRow()];
    
-   board[move.getFrom().getCol()][move.getFrom().getRow()] = pToSwap; // Then place the piece at dest to source
+   // If the dest is the last row and the piece is a pawn (promotion), dest will then point to a queen
+   if (move.getTo().getRow() == 7 && board[move.getTo().getCol()][move.getTo().getRow()]->isWhite() == true)
+   {
+      delete board[move.getTo().getCol()][move.getTo().getRow()];
+      board[move.getTo().getCol()][move.getTo().getRow()] = new Queen(move.getFrom().getCol(), move.getFrom().getRow(), true);
+   }
+   else if (move.getTo().getRow() == 0 && board[move.getTo().getCol()][move.getTo().getRow()]->isWhite() == false)
+   {
+      delete board[move.getTo().getCol()][move.getTo().getRow()];
+      board[move.getTo().getCol()][move.getTo().getRow()] = new Queen(move.getFrom().getCol(), move.getFrom().getRow(), false);
+   }
+   
+   
+   // The source is now pointing to the piece from dest
+   board[move.getFrom().getCol()][move.getFrom().getRow()] = pToSwap;
    
    // Update their current position
    board[move.getFrom().getCol()][move.getFrom().getRow()]->setPosition(move.getTo());

@@ -22,6 +22,8 @@ class TestBoard : public UnitTest
 public:
    void run()
    {
+      construct_default();
+      
       // Board Core
       construct_dummyBoard();
       construct_emptyBoard();
