@@ -36,11 +36,11 @@ public:
    Move(const string move);
    
    // getters
-   const Position & getFrom() const                       { return source;   }
-   const Position & getTo() const                          { return dest;     }
-   const PieceType getCapturedPieceType(string move) { return capture;  }
+   const Position & getFrom() const                  { return source;   }
+   const Position & getTo() const                    { return dest;     }
+   const PieceType getCapturedPieceType()            { return capture;  }
    const PieceType & getPromotionPieceType()         { return promote;  }
-   const MoveType getMoveType(string move)           { return moveType; }
+   const MoveType getMoveType()                      { return moveType; }
    const bool getCapturedPieceColor();
    const PieceType & getPrevPiece();
    const bool getPrevPieceColor();
@@ -49,7 +49,8 @@ public:
    // setters
    void setMoveType(string move);
    void setCapturedPieceType(string move);
-   void setPromotionPiece(PieceType piece) { promote = piece; } //Added for promotion 10/16/2024
+   void setPromotionPiece(PieceType pt) { promote = pt; } //Added for promotion 10/16/2024
+   void setCapture(PieceType capturedPiece) { capture = capturedPiece; }
    
    const bool isPromotion();
    bool isEnPassant(string move);
@@ -59,7 +60,6 @@ public:
    bool operator==(const Move& rhs) const;
    void constructPos(string move);
    int readAndAssign();
-   void setCapture(PieceType capturedPiece) { capture = capturedPiece; }
 
 
 protected:
