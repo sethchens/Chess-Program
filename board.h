@@ -14,6 +14,12 @@
 #include "move.h"   // Because we return a set of Move
 #include "piece.h"  // Because BoardEmpty need to know the fill definition
 #include "pieceQueen.h"
+#include "pieceKnight.h"
+#include "pieceRook.h"
+#include "pieceBishop.h"
+#include "pieceKing.h"
+#include "piecePawn.h"
+#include "pieceSpace.h"
 
 class ogstream;
 class TestPawn;
