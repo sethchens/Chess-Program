@@ -43,40 +43,40 @@ void Board::reset(bool fFree)
    }
    
    // White pieces
-   board[0][0] = new Rook(0, 0, true);  // White Rook
-   board[7][0] = new Rook(7, 0, true);  // White Rook
-   board[1][0] = new Knight(1, 0, true);  // White Knight
-   board[6][0] = new Knight(6, 0, true);  // White Knight
-   board[2][0] = new Bishop(2, 0, true);  // White Rook
-   board[5][0] = new Bishop(5, 0, true);  // White Rook
-   board[3][0] = new Queen(3, 0, true);  // White Queen
-   board[4][0] = new King(4, 0, true);  // White King
-   board[0][1] = new Pawn(0, 1, true);  // White Pawn
-   board[1][1] = new Pawn(1, 1, true);  // White Pawn
-   board[2][1] = new Pawn(2, 1, true);  // White Pawn
-   board[3][1] = new Pawn(3, 1, true);  // White Pawn
-   board[4][1] = new Pawn(4, 1, true);  // White Pawn
-   board[5][1] = new Pawn(5, 1, true);  // White Pawn
-   board[6][1] = new Pawn(6, 1, true);  // White Pawn
-   board[7][1] = new Pawn(7, 1, true);  // White Pawn
+   board[0][0] = new Rook(0, 0, false);  // Black Rook
+   board[7][0] = new Rook(7, 0, false);  // Black Rook
+   board[1][0] = new Knight(1, 0, false);  // Black Knight
+   board[6][0] = new Knight(6, 0, false);  // Black Knight
+   board[2][0] = new Bishop(2, 0, false);  // Black Rook
+   board[5][0] = new Bishop(5, 0, false);  // Black Rook
+   board[3][0] = new Queen(3, 0, false);  // Black Queen
+   board[4][0] = new King(4, 0, false);  // Black King
+   board[0][1] = new Pawn(0, 1, false);  // Black Pawn
+   board[1][1] = new Pawn(1, 1, false);  // Black Pawn
+   board[2][1] = new Pawn(2, 1, false);  // Black Pawn
+   board[3][1] = new Pawn(3, 1, false);  // Black Pawn
+   board[4][1] = new Pawn(4, 1, false);  // Black Pawn
+   board[5][1] = new Pawn(5, 1, false);  // Black Pawn
+   board[6][1] = new Pawn(6, 1, false);  // Black Pawn
+   board[7][1] = new Pawn(7, 1, false);  // Black Pawn
    
    // Black pieces
-   board[0][7] = new Rook(0, 7, false);    // Black Rook
-   board[7][7] = new Rook(7, 7, false);    // Black Rook
-   board[1][7] = new Knight(1, 7, false);  // Black Knight
-   board[6][7] = new Knight(6, 7, false);  // Black Knight
-   board[2][7] = new Bishop(2, 7, false);  // Black Rook
-   board[5][7] = new Bishop(5, 7, false);  // Black Rook
-   board[3][7] = new Queen(3, 7, false);   // Black Queen
-   board[4][7] = new King(4, 7, false);    // Black King
-   board[0][6] = new Pawn(0, 6, false);    // Black Pawn
-   board[1][6] = new Pawn(1, 6, false);    // Black Pawn
-   board[2][6] = new Pawn(2, 6, false);    // Black Pawn
-   board[3][6] = new Pawn(3, 6, false);    // Black Pawn
-   board[4][6] = new Pawn(4, 6, false);    // Black Pawn
-   board[5][6] = new Pawn(5, 6, false);    // Black Pawn
-   board[6][6] = new Pawn(6, 6, false);    // Black Pawn
-   board[7][6] = new Pawn(7, 6, false);    // Black Pawn
+   board[0][7] = new Rook(0, 7, true);    // White Rook
+   board[7][7] = new Rook(7, 7, true);    // White Rook
+   board[1][7] = new Knight(1, 7, true);  // White Knight
+   board[6][7] = new Knight(6, 7, true);  // White Knight
+   board[2][7] = new Bishop(2, 7, true);  // White Rook
+   board[5][7] = new Bishop(5, 7, true);  // White Rook
+   board[3][7] = new Queen(3, 7, true);   // White Queen
+   board[4][7] = new King(4, 7, true);    // White King
+   board[0][6] = new Pawn(0, 6, true);    // White Pawn
+   board[1][6] = new Pawn(1, 6, true);    // White Pawn
+   board[2][6] = new Pawn(2, 6, true);    // White Pawn
+   board[3][6] = new Pawn(3, 6, true);    // White Pawn
+   board[4][6] = new Pawn(4, 6, true);    // White Pawn
+   board[5][6] = new Pawn(5, 6, true);    // White Pawn
+   board[6][6] = new Pawn(6, 6, true);    // White Pawn
+   board[7][6] = new Pawn(7, 6, true);    // White Pawn
 }
 
 /***********************************************
