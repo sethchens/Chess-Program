@@ -85,6 +85,8 @@ public:
    static void* p;                   // for client
    static void (*callBack)(Interface*, void*);
 
+
+
 private:
    void initialize(const char* title);
 

@@ -12,6 +12,7 @@
 #include "position.h"
 #include "pieceSpace.h"
 #include <cassert>
+#include <iostream>
 using namespace std;
 
 
@@ -43,40 +44,40 @@ void Board::reset(bool fFree)
    }
    
    // White pieces
-   board[0][0] = new Rook(0, 0, false);  // Black Rook
-   board[7][0] = new Rook(7, 0, false);  // Black Rook
-   board[1][0] = new Knight(1, 0, false);  // Black Knight
-   board[6][0] = new Knight(6, 0, false);  // Black Knight
-   board[2][0] = new Bishop(2, 0, false);  // Black Rook
-   board[5][0] = new Bishop(5, 0, false);  // Black Rook
-   board[3][0] = new Queen(3, 0, false);  // Black Queen
-   board[4][0] = new King(4, 0, false);  // Black King
-   board[0][1] = new Pawn(0, 1, false);  // Black Pawn
-   board[1][1] = new Pawn(1, 1, false);  // Black Pawn
-   board[2][1] = new Pawn(2, 1, false);  // Black Pawn
-   board[3][1] = new Pawn(3, 1, false);  // Black Pawn
-   board[4][1] = new Pawn(4, 1, false);  // Black Pawn
-   board[5][1] = new Pawn(5, 1, false);  // Black Pawn
-   board[6][1] = new Pawn(6, 1, false);  // Black Pawn
-   board[7][1] = new Pawn(7, 1, false);  // Black Pawn
-   
+   board[0][0] = new Rook(0, 0, true);  // White Rook
+   board[7][0] = new Rook(7, 0, true);  // White Rook
+   board[1][0] = new Knight(1, 0, true);  // White Knight
+   board[6][0] = new Knight(6, 0, true);  // White Knight
+   board[2][0] = new Bishop(2, 0, true);  // White Rook
+   board[5][0] = new Bishop(5, 0, true);  // White Rook
+   board[3][0] = new Queen(3, 0, true);  // White Queen
+   board[4][0] = new King(4, 0, true);  // White King
+   board[0][1] = new Pawn(0, 1, true);  // White Pawn
+   board[1][1] = new Pawn(1, 1, true);  // White Pawn
+   board[2][1] = new Pawn(2, 1, true);  // White Pawn
+   board[3][1] = new Pawn(3, 1, true);  // White Pawn
+   board[4][1] = new Pawn(4, 1, true);  // White Pawn
+   board[5][1] = new Pawn(5, 1, true);  // White Pawn
+   board[6][1] = new Pawn(6, 1, true);  // White Pawn
+   board[7][1] = new Pawn(7, 1, true);  // White Pawn
+
    // Black pieces
-   board[0][7] = new Rook(0, 7, true);    // White Rook
-   board[7][7] = new Rook(7, 7, true);    // White Rook
-   board[1][7] = new Knight(1, 7, true);  // White Knight
-   board[6][7] = new Knight(6, 7, true);  // White Knight
-   board[2][7] = new Bishop(2, 7, true);  // White Rook
-   board[5][7] = new Bishop(5, 7, true);  // White Rook
-   board[3][7] = new Queen(3, 7, true);   // White Queen
-   board[4][7] = new King(4, 7, true);    // White King
-   board[0][6] = new Pawn(0, 6, true);    // White Pawn
-   board[1][6] = new Pawn(1, 6, true);    // White Pawn
-   board[2][6] = new Pawn(2, 6, true);    // White Pawn
-   board[3][6] = new Pawn(3, 6, true);    // White Pawn
-   board[4][6] = new Pawn(4, 6, true);    // White Pawn
-   board[5][6] = new Pawn(5, 6, true);    // White Pawn
-   board[6][6] = new Pawn(6, 6, true);    // White Pawn
-   board[7][6] = new Pawn(7, 6, true);    // White Pawn
+   board[0][7] = new Rook(0, 7, false);    // Black Rook
+   board[7][7] = new Rook(7, 7, false);    // Black Rook
+   board[1][7] = new Knight(1, 7, false);  // Black Knight
+   board[6][7] = new Knight(6, 7, false);  // Black Knight
+   board[2][7] = new Bishop(2, 7, false);  // Black Rook
+   board[5][7] = new Bishop(5, 7, false);  // Black Rook
+   board[3][7] = new Queen(3, 7, false);   // Black Queen
+   board[4][7] = new King(4, 7, false);    // Black King
+   board[0][6] = new Pawn(0, 6, false);    // Black Pawn
+   board[1][6] = new Pawn(1, 6, false);    // Black Pawn
+   board[2][6] = new Pawn(2, 6, false);    // Black Pawn
+   board[3][6] = new Pawn(3, 6, false);    // Black Pawn
+   board[4][6] = new Pawn(4, 6, false);    // Black Pawn
+   board[5][6] = new Pawn(5, 6, false);    // Black Pawn
+   board[6][6] = new Pawn(6, 6, false);    // Black Pawn
+   board[7][6] = new Pawn(7, 6, false);    // Black Pawn
 }
 
 /***********************************************
@@ -155,51 +156,75 @@ void Board::assertBoard()
  *********************************************/
 void Board::move(Move & move)
 {
-   // If the piece currently at dest is not a space, that means it's a capture.
-   if (board[move.getTo().getCol()][move.getTo().getRow()]->getType() != SPACE)
-   {
-      // The only exception is that if the source is a king, the move is actually a castling
-      if (board[move.getFrom().getCol()][move.getFrom().getRow()]->getType() != KING)
-      {
-            board[move.getTo().getCol()][move.getTo().getRow()] = new Space(move.getFrom().getCol(), move.getFrom().getRow());
-      }
-      else
-      {
-         if (board[move.getFrom().getCol()][move.getFrom().getRow()]->isWhite() != board[move.getTo().getCol()][move.getTo().getRow()]->isWhite())
-            board[move.getTo().getCol()][move.getTo().getRow()] = new Space(move.getFrom().getCol(), move.getFrom().getRow());
-      }
-   }
-   
-   // Swapping two pointers
-   Piece * pToSwap = board[move.getTo().getCol()][move.getTo().getRow()];
-   board[move.getTo().getCol()][move.getTo().getRow()] = board[move.getFrom().getCol()][move.getFrom().getRow()];
-   
-   // If the dest is the last row and the piece is a pawn (promotion), dest will then point to a queen
-   if (move.getTo().getRow() == 7 && board[move.getTo().getCol()][move.getTo().getRow()]->isWhite() == true)
-   {
-      delete board[move.getTo().getCol()][move.getTo().getRow()];
-      board[move.getTo().getCol()][move.getTo().getRow()] = new Queen(move.getFrom().getCol(), move.getFrom().getRow(), true);
-   }
-   else if (move.getTo().getRow() == 0 && board[move.getTo().getCol()][move.getTo().getRow()]->isWhite() == false)
-   {
-      delete board[move.getTo().getCol()][move.getTo().getRow()];
-      board[move.getTo().getCol()][move.getTo().getRow()] = new Queen(move.getFrom().getCol(), move.getFrom().getRow(), false);
-   }
-   
-   
-   // The source is now pointing to the piece from dest
-   board[move.getFrom().getCol()][move.getFrom().getRow()] = pToSwap;
-   
-   // Update their current position
-   board[move.getFrom().getCol()][move.getFrom().getRow()]->setPosition(move.getTo());
-   board[move.getTo().getCol()][move.getTo().getRow()]->setPosition(move.getFrom());
-   
-   // update nMove and all that
-   board[move.getTo().getCol()][move.getTo().getRow()]->setLastMove(1);
-   board[move.getFrom().getCol()][move.getFrom().getRow()] -> setLastMove(1);
-   
-   // Record numMove
-   numMoves ++;
+    // Get source and destination positions for clarity
+    Position source = move.getFrom();
+    Position dest = move.getTo();
+
+    // Handle captures
+    if (board[dest.getCol()][dest.getRow()]->getType() != SPACE)
+    {
+        // If it's not a castling move, handle as capture
+        if (board[source.getCol()][source.getRow()]->getType() != KING)
+        {
+            delete board[dest.getCol()][dest.getRow()];
+            board[dest.getCol()][dest.getRow()] = new Space(dest.getCol(), dest.getRow());
+        }
+        else if (board[source.getCol()][source.getRow()]->isWhite() !=
+            board[dest.getCol()][dest.getRow()]->isWhite())
+        {
+            delete board[dest.getCol()][dest.getRow()];
+            board[dest.getCol()][dest.getRow()] = new Space(dest.getCol(), dest.getRow());
+        }
+    }
+
+    // Move the piece
+    Piece* movingPiece = board[source.getCol()][source.getRow()];
+    Piece* destSpace = board[dest.getCol()][dest.getRow()];
+
+    // Update the board
+    board[dest.getCol()][dest.getRow()] = movingPiece;
+    board[source.getCol()][source.getRow()] = destSpace;
+
+    // Handle pawn promotion
+    if (movingPiece->getType() == PAWN)
+    {
+        // White pawn promotion
+        if (dest.getRow() == 7 && movingPiece->isWhite())
+        {
+            delete board[dest.getCol()][dest.getRow()];
+            board[dest.getCol()][dest.getRow()] = new Queen(dest.getCol(), dest.getRow(), true);
+        }
+        // Black pawn promotion
+        else if (dest.getRow() == 0 && !movingPiece->isWhite())
+        {
+            delete board[dest.getCol()][dest.getRow()];
+            board[dest.getCol()][dest.getRow()] = new Queen(dest.getCol(), dest.getRow(), false);
+        }
+
+        if (Move::ENPASSANT)
+        {
+            // Determine the row of the captured pawn
+            int capturedRow = movingPiece->isWhite() ? dest.getRow() - 1 : dest.getRow() + 1;
+
+            // Remove the captured pawn from the board
+            delete board[dest.getCol()][capturedRow];
+            board[dest.getCol()][capturedRow] = new Space(dest.getCol(), capturedRow);
+        }
+
+    }
+
+    // Update piece positions
+    if (board[dest.getCol()][dest.getRow()]->getType() != SPACE)
+        board[dest.getCol()][dest.getRow()]->setPosition(dest);
+    if (board[source.getCol()][source.getRow()]->getType() != SPACE)
+        board[source.getCol()][source.getRow()]->setPosition(source);
+
+    // Update move counters
+    board[dest.getCol()][dest.getRow()]->setLastMove(numMoves);
+    board[source.getCol()][source.getRow()]->setLastMove(numMoves);
+
+    // Increment the move counter
+    numMoves++;
 }
 
 
@@ -221,3 +246,4 @@ BoardEmpty::~BoardEmpty()
 {
    delete pSpace;
 }
+

@@ -47,8 +47,8 @@
 using namespace std;
 
 // pieces: black and white
-const int RGB_WHITE[] = { 255, 255, 255 };
-const int RGB_BLACK[] = { 0, 0, 0 };
+const int RGB_WHITE[] = { 0,0,0 };
+const int RGB_BLACK[] = { 255, 255, 255 };
 
 // normal squares: tan and brown
 const int RGB_WHITE_SQUARE[] = { 210, 180, 140 };

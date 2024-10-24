@@ -2,7 +2,7 @@
 * Source File:
 *    Lab 04: Chess
 * Author:
-*    <your name here>
+*    Chris Mijangos and Seth Chen 
 * Summary:
 *    Play the game of chess
 ************************************************************************/
@@ -18,6 +18,7 @@
 #include <cassert>        // for ASSERT
 #include <fstream>        // for IFSTREAM
 #include <string>         // for STRING
+#include <iostream>
 using namespace std;
 
 
@@ -30,14 +31,77 @@ using namespace std;
  **************************************/
 void callBack(Interface *pUI, void * p)
 {
-   // the first step is to cast the void pointer into a game object. This
-   // is the first step of every single callback function in OpenGL. 
-   Board * pBoard = (Board *)p;
-   
-   // Some game logic will be here
-   
-   // Draw the board
-   pBoard->display(pUI->getHoverPosition(), pUI->getSelectPosition());
+    Board* pBoard = (Board*)p;
+    Position posSelect = pUI->getSelectPosition();
+    Position posPrevious = pUI->getPreviousPosition();
+
+    // Debug both positions whenever either is valid
+    if (posSelect.isValid()) {
+        cout << "Selected position: " << posSelect.getText() << endl;
+    }
+    if (posPrevious.isValid()) {
+        cout << "Previous position: " << posPrevious.getText() << endl;
+    }
+
+    // If we have a valid selection
+    if (posSelect.isValid())
+    {
+        // If this is our first click (no previous position)
+        if (!posPrevious.isValid())
+        {
+            // Check if we're selecting our own piece
+            const Piece& piece = (*pBoard)[posSelect];
+            cout << "Piece type: " << piece.getType() << endl;
+            cout << "Piece is white: " << piece.isWhite() << endl;
+            cout << "Is white's turn: " << pBoard->whiteTurn() << endl;
+
+            // If we select an empty space or opponent's piece, clear selection
+            if (piece.getType() == SPACE || piece.isWhite() != pBoard->whiteTurn())
+            {
+                pUI->clearSelectPosition();
+            }
+            // Otherwise selection is valid and we keep it for the next click
+        }
+        // If this is our second click (we have a previous position)
+        else
+        {
+            // Create the move
+            Move move(posPrevious, posSelect);
+            const Piece& sourcePiece = (*pBoard)[posPrevious];
+
+            // Get valid moves for the selected piece
+            set<Move> moves;
+            sourcePiece.getMoves(moves, *pBoard);
+
+            cout << "Number of valid moves: " << moves.size() << endl;
+
+            // Check if destination has an opponent's piece
+            const Piece& destPiece = (*pBoard)[posSelect];
+            if (destPiece.getType() != SPACE &&
+                destPiece.isWhite() != sourcePiece.isWhite())
+            {
+                move.setCapture(destPiece.getType());
+            }
+
+            // Try to execute the move if it's valid
+            if (moves.find(move) != moves.end())
+            {
+                cout << "Executing move from " << posPrevious.getText()
+                    << " to " << posSelect.getText() << endl;
+                pBoard->move(move);
+            }
+            else
+            {
+                cout << "Invalid move attempted" << endl;
+            }
+
+            // Clear selection after move attempt
+            pUI->clearSelectPosition();
+        }
+    }
+
+    // Draw the board
+    pBoard->display(pUI->getHoverPosition(), pUI->getSelectPosition());
 }
 
 

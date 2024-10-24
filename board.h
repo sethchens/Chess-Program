@@ -65,6 +65,7 @@ public:
    virtual void reset(bool fFree = true);
    virtual void move(Move & move);
    virtual Piece& operator [] (const Position& pos);
+    
 
 protected:
    void  assertBoard();
