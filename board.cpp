@@ -188,29 +188,30 @@ void Board::move(Move & move)
     // Handle pawn promotion
     if (movingPiece->getType() == PAWN)
     {
-        // White pawn promotion
-        if (dest.getRow() == 7 && movingPiece->isWhite())
-        {
-            delete board[dest.getCol()][dest.getRow()];
-            board[dest.getCol()][dest.getRow()] = new Queen(dest.getCol(), dest.getRow(), true);
-        }
-        // Black pawn promotion
-        else if (dest.getRow() == 0 && !movingPiece->isWhite())
-        {
-            delete board[dest.getCol()][dest.getRow()];
-            board[dest.getCol()][dest.getRow()] = new Queen(dest.getCol(), dest.getRow(), false);
-        }
+       if (move.getMoveType() == Move::ENPASSANT)
+       {
+           // Determine the row of the captured pawn
+           int capturedRow = movingPiece->isWhite() ? dest.getRow() - 1 : dest.getRow() + 1;
 
-        if (Move::ENPASSANT)
-        {
-            // Determine the row of the captured pawn
-            int capturedRow = movingPiece->isWhite() ? dest.getRow() - 1 : dest.getRow() + 1;
-
-            // Remove the captured pawn from the board
-            delete board[dest.getCol()][capturedRow];
-            board[dest.getCol()][capturedRow] = new Space(dest.getCol(), capturedRow);
-        }
-
+           // Remove the captured pawn from the board
+           delete board[dest.getCol()][capturedRow];
+           board[dest.getCol()][capturedRow] = new Space(dest.getCol(), capturedRow);
+       }
+       else
+       {
+          // White pawn promotion
+          if (dest.getRow() == 7 && movingPiece->isWhite())
+          {
+             delete board[dest.getCol()][dest.getRow()];
+             board[dest.getCol()][dest.getRow()] = new Queen(dest.getCol(), dest.getRow(), true);
+          }
+          // Black pawn promotion
+          else if (dest.getRow() == 0 && !movingPiece->isWhite())
+          {
+             delete board[dest.getCol()][dest.getRow()];
+             board[dest.getCol()][dest.getRow()] = new Queen(dest.getCol(), dest.getRow(), false);
+          }
+       }
     }
 
     // Update piece positions
