@@ -57,7 +57,8 @@ public:
    virtual int  getCurrentMove() const { return numMoves; }
    virtual bool whiteTurn()      const { return numMoves % 2 == 0; }
    virtual void display(const Position& posHover, const Position& posSelect) const;
-   virtual bool isCheck() {return false;}
+   virtual bool isChecked(set<Move>& moves, bool isWhiteTurn);
+   virtual void undo(Move move);
    virtual const Piece& operator [] (const Position& pos) const;
 
    // setters

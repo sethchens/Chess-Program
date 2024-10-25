@@ -84,16 +84,20 @@ void callBack(Interface *pUI, void * p)
             }
 
             // Try to execute the move if it's valid
-            if (moves.find(move) != moves.end())
-            {
-                cout << "Executing move from " << posPrevious.getText()
-                    << " to " << posSelect.getText() << endl;
-                pBoard->move(move);
-            }
-            else
-            {
-                cout << "Invalid move attempted" << endl;
-            }
+           if (moves.find(move) != moves.end())
+           {
+              cout << "Executing move from " << posPrevious.getText()
+              << " to " << posSelect.getText() << endl;
+              
+              pBoard->move(move);
+              
+              // The board counts move even before that move is finished, so the reversed is the right turn
+              if (pBoard->isChecked(moves, !pBoard->whiteTurn()))
+              {
+                 pBoard->undo(move);
+
+              }
+           }
 
             // Clear selection after move attempt
             pUI->clearSelectPosition();
