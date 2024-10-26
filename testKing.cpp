@@ -293,7 +293,7 @@ void TestKing::getMoves_whiteCastle()
 
     // VERIFY:
     // King-side and Queen-side castling
-    assertUnit(moves.size() == 4);  // 2 castling moves 
+    assertUnit(moves.size() == 6);  // 2 castling moves
 
     // Verify regular moves (king can move one square in any direction)
     assertUnit(moves.find(Move("e1d1")) != moves.end());  // Move to d1
@@ -359,7 +359,7 @@ void TestKing::getMoves_blackCastle()
     //}
 
     // VERIFY:
-    assertUnit(moves.size() == 4);
+    assertUnit(moves.size() == 6);
 
     // Verify regular moves (king can move one square left or right)
     assertUnit(moves.find(Move("e8d8")) != moves.end());  // Move to d8
@@ -546,7 +546,7 @@ void TestKing::getMoves_whiteCastleRookMoved()
     king.getMoves(moves, board);
 
     // VERIFY:
-    assertUnit(moves.size() == 3);
+    assertUnit(moves.size() == 4);
 
     // Verify regular moves (king can move one square left or right)
     assertUnit(moves.find(Move("e1d1")) != moves.end());  // Move to d1

@@ -36,14 +36,6 @@ void callBack(Interface *pUI, void * p)
     Position posSelect = pUI->getSelectPosition();
     Position posPrevious = pUI->getPreviousPosition();
 
-    // Debug both positions whenever either is valid
-    if (posSelect.isValid()) {
-        cout << "Selected position: " << posSelect.getText() << endl;
-    }
-    if (posPrevious.isValid()) {
-        cout << "Previous position: " << posPrevious.getText() << endl;
-    }
-
     // If we have a valid selection
     if (posSelect.isValid())
     {
@@ -52,9 +44,6 @@ void callBack(Interface *pUI, void * p)
         {
             // Check if we're selecting our own piece
             const Piece& piece = (*pBoard)[posSelect];
-            cout << "Piece type: " << piece.getType() << endl;
-            cout << "Piece is white: " << piece.isWhite() << endl;
-            cout << "Is white's turn: " << pBoard->whiteTurn() << endl;
 
             // If we select an empty space or opponent's piece, clear selection
             if (piece.getType() == SPACE || piece.isWhite() != pBoard->whiteTurn())
@@ -74,8 +63,6 @@ void callBack(Interface *pUI, void * p)
             set<Move> moves;
             sourcePiece.getMoves(moves, *pBoard);
 
-            cout << "Number of valid moves: " << moves.size() << endl;
-
             // Check if destination has an opponent's piece
             const Piece& destPiece = (*pBoard)[posSelect];
             if (destPiece.getType() != SPACE &&
@@ -87,9 +74,6 @@ void callBack(Interface *pUI, void * p)
             // Try to execute the move if it's valid
            if (moves.find(move) != moves.end())
            {
-              cout << "Executing move from " << posPrevious.getText()
-              << " to " << posSelect.getText() << endl;
-              
               pBoard->move(move);
               
               // To handle extra move for rook during castling
@@ -103,7 +87,7 @@ void callBack(Interface *pUI, void * p)
                     if ((move.getFrom().getCol() == 0 && move.getFrom().getRow() == 0 && move.getTo().getCol() == 3 && move.getTo().getRow() == 0) ||
                         (move.getFrom().getCol() == 7 && move.getFrom().getRow() == 0 && move.getTo().getCol() == 5 && move.getTo().getRow() == 0) ||
                         (move.getFrom().getCol() == 0 && move.getFrom().getRow() == 7 && move.getTo().getCol() == 3 && move.getTo().getRow() == 7) ||
-                        (move.getFrom().getCol() == 7 && move.getFrom().getRow() == 7 && move.getTo().getCol() == 5 && move.getTo().getRow() == 7)
+                        (move.getFrom().getCol() == 7 && move.getFrom().getRow() == 7 && move.getTo().getCol() == 5 && move.getTo().getRow() == 0)
                         )
                        tempMove = move;
                  }
