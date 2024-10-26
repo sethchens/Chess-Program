@@ -19,6 +19,7 @@
 #include <fstream>        // for IFSTREAM
 #include <string>         // for STRING
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 
@@ -90,6 +91,24 @@ void callBack(Interface *pUI, void * p)
               << " to " << posSelect.getText() << endl;
               
               pBoard->move(move);
+              
+              // To handle extra move for rook during castling
+              if (((move.getFrom().getCol() ==  4 && move.getFrom().getRow() == 0) ||
+                  (move.getFrom().getCol() ==  4 && move.getFrom().getRow() == 7)) &&
+                  abs(move.getFrom().getCol() - move.getTo().getCol()) == 2)
+              {
+                 Move tempMove;
+                 for (Move move : moves)
+                 {
+                    if ((move.getFrom().getCol() == 0 && move.getFrom().getRow() == 0 && move.getTo().getCol() == 3 && move.getTo().getRow() == 0) ||
+                        (move.getFrom().getCol() == 7 && move.getFrom().getRow() == 0 && move.getTo().getCol() == 5 && move.getTo().getRow() == 0) ||
+                        (move.getFrom().getCol() == 0 && move.getFrom().getRow() == 7 && move.getTo().getCol() == 3 && move.getTo().getRow() == 7) ||
+                        (move.getFrom().getCol() == 7 && move.getFrom().getRow() == 7 && move.getTo().getCol() == 5 && move.getTo().getRow() == 7)
+                        )
+                       tempMove = move;
+                 }
+                 pBoard->move(tempMove);
+              }
               
               // The board counts move even before that move is finished, so the reversed is the right turn
               if (pBoard->isChecked(moves, !pBoard->whiteTurn()))
