@@ -47,9 +47,6 @@ bool King::canCastle(const Board& board, bool kingSide) const
     if (isMoved())
         return false;
 
-    // We can't use board.isCheck() here because it's not const
-    // So we'll skip the check condition for now
-
     int row = isWhite() ? 0 : 7;
     int rookCol = kingSide ? 7 : 0;
     Position rookPos(rookCol, row);
@@ -83,6 +80,11 @@ void King::addCastlingMoves(set<Move>& moves, const Board& board) const
         Move castleMove(position, kingFinal);
         castleMove.setMoveType("CASTLE_KING");
         moves.insert(castleMove);
+       
+       Position rookOriginRight(7, position.getRow());
+       Position rookFinalRight(5, position.getRow());
+       Move moveRight(rookOriginRight, rookFinalRight);
+       moves.insert(moveRight);
     }
 
     if (canCastle(board, false))  // Queenside castling
@@ -91,6 +93,11 @@ void King::addCastlingMoves(set<Move>& moves, const Board& board) const
         Move castleMove(position, kingFinal);
         castleMove.setMoveType("CASTLE_QUEEN");
         moves.insert(castleMove);
+       
+       Position rookOriginLeft(0, position.getRow());
+       Position rookFinalLeft(3, position.getRow());
+       Move moveLeft(rookOriginLeft, rookFinalLeft);
+       moves.insert(moveLeft);
     }
 }
 

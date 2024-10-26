@@ -49,8 +49,8 @@ void Board::reset(bool fFree)
    board[6][0] = new Knight(6, 0, true);  // White Knight
    board[2][0] = new Bishop(2, 0, true);  // White Rook
    board[5][0] = new Bishop(5, 0, true);  // White Rook
-   board[3][0] = new King(3, 0, true);  // White Queen
-   board[4][0] = new Queen(4, 0, true);  // White King
+   board[3][0] = new Queen(3, 0, true);  // White Queen
+   board[4][0] = new King(4, 0, true);  // White King
    board[0][1] = new Pawn(0, 1, true);  // White Pawn
    board[1][1] = new Pawn(1, 1, true);  // White Pawn
    board[2][1] = new Pawn(2, 1, true);  // White Pawn
@@ -67,8 +67,8 @@ void Board::reset(bool fFree)
    board[6][7] = new Knight(6, 7, false);  // Black Knight
    board[2][7] = new Bishop(2, 7, false);  // Black Rook
    board[5][7] = new Bishop(5, 7, false);  // Black Rook
-   board[3][7] = new King(3, 7, false);   // Black Queen
-   board[4][7] = new Queen(4, 7, false);    // Black King
+   board[3][7] = new Queen(3, 7, false);   // Black Queen
+   board[4][7] = new King(4, 7, false);    // Black King
    board[0][6] = new Pawn(0, 6, false);    // Black Pawn
    board[1][6] = new Pawn(1, 6, false);    // Black Pawn
    board[2][6] = new Pawn(2, 6, false);    // Black Pawn
@@ -196,6 +196,7 @@ void Board::undo(Move move)
    
    // Move the piece back to its source position
    Piece* movingPiece = board[dest.getCol()][dest.getRow()];
+   movingPiece->setPosition(source);
    board[source.getCol()][source.getRow()] = movingPiece;
 
    // Restore any captured piece at the destination
@@ -233,6 +234,10 @@ void Board::undo(Move move)
          board[dest.getCol()][dest.getRow()] = new Space(dest.getCol(), dest.getRow());
          break;
    }
+   
+   // When undo is called, it means that a move has already been performed (meaning numMoves increments),
+   // so it is neccessary to decrement numMoves to reflect the undo
+   numMoves --;
 }
 
 
@@ -305,7 +310,10 @@ void Board::move(Move & move)       // Take moves as a parameter so the boad can
 
     // Update piece positions
     if (board[dest.getCol()][dest.getRow()]->getType() != SPACE)
-        board[dest.getCol()][dest.getRow()]->setPosition(dest);
+    {
+       board[dest.getCol()][dest.getRow()]->setPosition(dest);
+       
+    }
     if (board[source.getCol()][source.getRow()]->getType() != SPACE)
         board[source.getCol()][source.getRow()]->setPosition(source);
 
@@ -315,6 +323,14 @@ void Board::move(Move & move)       // Take moves as a parameter so the boad can
 
     // Increment the move counter
     numMoves++;
+   
+    // Adjust if castle
+   if (((source.getCol() ==  4 && source.getRow() == 0) ||
+       (source.getCol() ==  4 && source.getRow() == 7)) &&
+       abs(source.getCol() - dest.getCol()) == 2)
+   {
+      numMoves --;
+   }
 }
 
 
