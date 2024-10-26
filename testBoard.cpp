@@ -1284,7 +1284,7 @@ void TestBoard::move_kingShortCastle()
    board.move(move);
 
    // VERIFY
-   assertUnit(1 == board.numMoves);
+   assertUnit(0 == board.numMoves);
    assertUnit(ROOK == (board.board[4][0])->getType());
    assertUnit(KING == (board.board[6][0])->getType());
    assertUnit(SPACE == move.getCapturedPieceType());
@@ -1333,7 +1333,7 @@ void TestBoard::move_kingLongCastle()
    board.move(move);
 
    // VERIFY
-   assertUnit(1 == board.numMoves);
+   assertUnit(0 == board.numMoves);
    assertUnit(ROOK == (board.board[4][0])->getType());
    assertUnit(KING == (board.board[2][0])->getType());
    assertUnit(SPACE == move.getCapturedPieceType());
